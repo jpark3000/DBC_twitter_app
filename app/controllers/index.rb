@@ -9,10 +9,8 @@ get '/:username' do
     @user.fetch_tweets!
   end
 
-  if @user.tweets_stale?
-    @user.fetch_new_tweets!
-  end
+  @user.new_tweets
 
-  @tweets = @user.tweets.sort_by { |tweet| tweet.tweet_id }
+  @tweets = @user.tweets.order(tweet_id: :desc).limit(10)
   erb :tweets
 end

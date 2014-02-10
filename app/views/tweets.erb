@@ -1,7 +1,12 @@
 <% if @tweets %>
   <ul>
-  <% @tweets.reverse_each do |tweet| %>
+  <% @tweets.each do |tweet| %>
       <li><%= tweet.tweet %></li>
   <% end %>
 </ul>
 <% end %>
+
+
+
+
+<%= erb :_mypartial %>
