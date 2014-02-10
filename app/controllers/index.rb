@@ -3,14 +3,16 @@ get '/' do
   erb :index
 end
 
-get '/:username' do
+post '/twitter_user' do
+
   @user = TwitterUser.find_or_create_by(username: params[:username])
-  if @user.tweets.empty?
-    @user.fetch_tweets!
-  end
 
-  @user.new_tweets
-
+  @user.fetch_tweets!
   @tweets = @user.tweets.order(tweet_id: :desc).limit(10)
-  erb :tweets
+  erb :_tweets
 end
+
+
+
+
+
