@@ -1,0 +1,7 @@
+<% if @tweets %>
+  <ul>
+  <% @tweets.reverse_each do |tweet| %>
+      <li><%= tweet.tweet %></li>
+  <% end %>
+</ul>
+<% end %>
