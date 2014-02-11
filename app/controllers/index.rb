@@ -3,6 +3,21 @@ get '/' do
   erb :index
 end
 
+get '/tweet' do
+  erb :single_user_tweet
+end
+
+post '/tweet' do
+  begin
+    tweet = CLIENT.update(params[:tweet])
+  rescue
+    "error"
+  else
+    "success"
+  end
+  # (tweet.nil?) ? "error" : "success"
+end
+
 post '/twitter_user' do
 
   @user = TwitterUser.find_or_create_by(username: params[:username])
